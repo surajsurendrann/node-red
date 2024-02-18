@@ -1,0 +1,148 @@
+[
+    {
+        "id": "5311bc1ff4631ace",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7da230f29b97ec83",
+        "type": "tab",
+        "label": "RSS-Feed-Reader",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f0b84069758aadfe",
+        "type": "template",
+        "z": "5311bc1ff4631ace",
+        "name": "hello world",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "html",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n<body>\n\n<h1>My First Heading</h1>\n<p>My first paragraph.</p>\n\n</body>\n</html>\n",
+        "output": "str",
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "0e9f71a93f6881f4"
+            ]
+        ]
+    },
+    {
+        "id": "b21df7c6107f2bbe",
+        "type": "http in",
+        "z": "5311bc1ff4631ace",
+        "name": "",
+        "url": "/hello",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 220,
+        "y": 320,
+        "wires": [
+            [
+                "f0b84069758aadfe"
+            ]
+        ]
+    },
+    {
+        "id": "0e9f71a93f6881f4",
+        "type": "http response",
+        "z": "5311bc1ff4631ace",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "2f1b69ba4f7631c2",
+        "type": "feedparse",
+        "z": "7da230f29b97ec83",
+        "name": "ESPN",
+        "url": "https://espn.com/espn/rss/news",
+        "interval": "1",
+        "ignorefirst": false,
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "4c3cf2ec53a0e780",
+                "2657e1745d71d8a3"
+            ]
+        ]
+    },
+    {
+        "id": "4c3cf2ec53a0e780",
+        "type": "debug",
+        "z": "7da230f29b97ec83",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "2657e1745d71d8a3",
+        "type": "switch",
+        "z": "7da230f29b97ec83",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "warriors",
+                "vt": "str",
+                "case": false
+            },
+            {
+                "t": "regex",
+                "v": "Arsenal",
+                "vt": "str",
+                "case": false
+            },
+            {
+                "t": "regex",
+                "v": "curry",
+                "vt": "str",
+                "case": false
+            },
+            {
+                "t": "regex",
+                "v": "golden state",
+                "vt": "str",
+                "case": false
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [],
+            [],
+            [],
+            [],
+            []
+        ]
+    }
+]
